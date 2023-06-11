@@ -1,0 +1,11 @@
+.sidenav-item-link.active{
+    background-color: #97e73c;
+}
+
+.nav-item {
+    margin-right: auto;
+    overflow: hidden;
+    /* max-width: 130px; */
+    /* text-overflow: ellipsis; */
+    white-space: nowrap;
+}

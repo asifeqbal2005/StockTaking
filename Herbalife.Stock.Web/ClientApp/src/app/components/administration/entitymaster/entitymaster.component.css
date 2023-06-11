@@ -1,0 +1,62 @@
+/* .btnhandlerpadding {
+  margin-top: 2px;
+}
+tfoot {
+  display: table-header-group;
+  margin-top: 100px;
+}
+body {
+  font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Verdana, Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #fff;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;  
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+} */
+
+.h3,
+h3 {
+  font-size: 1.75rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.entity-form-group {
+  margin-bottom: 20px !important;
+}
+
+.col-title
+{  
+  padding-right: 0px !important;  
+}
+
+.input-display-order{
+  text-align: left;
+}
+
+.col-heading{
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 0px !important;
+}

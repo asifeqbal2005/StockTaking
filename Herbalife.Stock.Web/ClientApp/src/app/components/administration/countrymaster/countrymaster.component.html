@@ -1,0 +1,66 @@
+<div class="mainblock">
+    <div class="container">
+        <div class="col-md-12 col-title">
+            <div *ngIf="isAddButtonShow" id="addDiv" class="btnsearch btnhandlerpadding topmarg14">
+                <button class="btn btn-info" type="button" (click)="this.hideAddButton(false)">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div class="col-sm-4 col-title"></div>
+            <div class="col-heading">
+                <h3>
+                    Country Master
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-sm-12 col-title" *ngIf="isShown">
+            <div *ngIf="!isEditMode" style="font-weight: bold;">
+                Add Country
+            </div>
+            <div *ngIf="isEditMode" style="font-weight: bold;">
+                Edit Country
+            </div>
+            <div>
+                <form (ngSubmit)="f.form.valid && onSubmit(form)" name="form" #f="ngForm" novalidate autocomplete="off">
+                    <div class="form-group tableblock">
+                        <table class="tabulargrid">
+                            <tr class="form-group required">
+                                <td> <label class="control-label" for="countryName">Country Name</label></td>
+                                <td>
+                                    <input id="countryName" type="text" placeholder="Country Name" class="form-control"
+                                        [(ngModel)]="inputData.countryName" name="countryName" #countryName="ngModel"
+                                        [ngClass]="{ 'is-invalid': f.submitted && countryName.invalid }" required
+                                        autofocus />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="country-form-group required">
+                        <div class="col-sm-12 btnsearch">
+                            <button type="reset" class="btn btn-default" (click)="cancelCountry()"
+                                name="cancel">Cancel</button>
+                            <button type="submit" class="btn btn-primary" name="save"
+                                [hidden]="isReadOnlyMode">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-sm-12 col-title">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+                <tfoot>
+                    <tr class="filters">
+                        <th><input type="text" placeholder="Country Name" name="countryName" class="form-control" />
+                        </th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

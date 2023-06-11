@@ -1,0 +1,110 @@
+<div class="mainblock">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>
+                    Manage Users
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-sm-12 col-heading" *ngIf="isShown">
+            <div *ngIf="!isEditMode; else editmode">
+                <span style="font-weight: bold;">Add User</span>
+            </div>
+            <ng-template #editmode>
+                <span style="font-weight: bold;">Edit User</span>
+            </ng-template>
+            <div>
+                <form (ngSubmit)="f.form.valid && onSubmit(form)" name="form" #f="ngForm" novalidate autocomplete="off">
+                    <div class="form-group tableblock">
+                        <table class="tabulargrid">
+                            <tr class="form-group required">
+                                <td> <label class="control-label" for="userName">User Name</label></td>
+                                <td>
+                                    <!-- <input type="text" id="userName" placeholder="User Name" class="form-control"
+                                        [(ngModel)]="inputData.userName" name="userName" #userName="ngModel" /> -->
+                                    <select class="form-control" [(ngModel)]="inputData.userId"
+                                        name="userId">
+                                        <option *ngFor="let usr of userListResult" [value]="usr.userId">
+                                            {{usr.userName}}
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label" for="email">Email Id</label></td>
+                                <td>
+                                    <input type="text" id="email" placeholder="Email Id" class="form-control"
+                                        [(ngModel)]="inputData.email" name="email" #email="ngModel" />
+                                </td>
+                            </tr>
+                            <tr class="form-group required">
+                                <td><label class="control-label" for="groupName">Group Name</label></td>
+                                <td>
+                                    <!-- <input type="text" id="groupName" placeholder="Group Name" class="form-control"
+                                        [(ngModel)]="inputData.groupName" name="groupName" #groupName="ngModel" /> -->
+                                    <select class="form-control" [(ngModel)]="inputData.groupId"
+                                        name="groupId">
+                                        <option *ngFor="let grp of groupListResult" [value]="grp.groupId">
+                                            {{grp.groupName}}
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="user-form-group required">
+                        <div class="col-sm-12 btnsearch">
+                            <button type="reset" class="btn btn-default" (click)="cancelUserGroup()"
+                                name="cancel">Cancel</button>
+                            <button type="submit" class="btn btn-primary" name="save"
+                                [hidden]="isReadOnlyMode">Save</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- <form [formGroup]="myForm">
+                    <div class="form-group row tableblock">
+                        <tr class="form-group required">
+                            <td><label class="control-label">User Name</label></td>
+                            <td>
+                                <input type="text" id="userName" placeholder="User Name" class="form-control"
+                                    name="userName" />
+                            </td>
+                        </tr>
+                        <tr class="form-group required">
+                            <td><label class="control-label">Email Id</label></td>
+                            <td>
+                                <input type="text" id="email" placeholder="Email Id" class="form-control"
+                                    name="email" />
+                            </td>
+                        </tr>
+                        <tr class="form-group required">
+                            <td><label class="control-label">Group Name</label></td>
+                            <td>
+                                <input type="text" id="groupName" placeholder="Email Id" class="form-control"
+                                    name="groupName" />
+                            </td>
+                        </tr>
+                    </div>
+                </form> -->
+            </div>            
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-sm-12 col-heading">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+                <tfoot>
+                    <tr class="filters">
+                        <th><input type="text" placeholder="User Name" name="userName" class="form-control" /></th>
+                        <th><input type="text" placeholder="Email Id" name="email" class="form-control" /></th>
+                        <th><input type="text" placeholder="Group Name" name="groupName" class="form-control" /></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

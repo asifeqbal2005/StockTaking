@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Herbalife.Stock.Web.props" />
+</Project>

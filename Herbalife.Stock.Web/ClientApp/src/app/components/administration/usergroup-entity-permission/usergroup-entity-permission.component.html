@@ -1,0 +1,97 @@
+<div class="mainblock">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>Group Entity Permission</h3>
+      </div>
+    </div>
+
+    <div class="col-sm-12" *ngIf="pageType==1 || pageType==2">
+      <div>
+        <h5 class="header1" *ngIf="pageType==1">ADD GROUP ENTITY PERMISSION</h5>
+        <h5 class="header1" *ngIf="pageType==2">EDIT GROUP ENTITY PERMISSION</h5>
+        <form
+          (ngSubmit)="(userGroupControl.valid || userGroupPrimaryId>0) && onSubmit(form)"
+          name="form" #f="ngForm" novalidate autocomplete="off">
+          <div class="card-block">
+            <div class="form-group tableblock">
+              <table class="tabulargrid">
+                <tr class="form-group required">
+                  <td> <label class="control-label" for="userGroupControl">User Group</label></td>
+                  <td>
+                    <select id="userGroupControl" [(ngModel)]="formInput.userGroupControl" name="userGroupControl"
+                      #userGroupControl="ngModel" class="form-control"
+                      [ngClass]="{ 'is-invalid': f.submitted && userGroupControl.invalid }" required
+                      [disabled]="userGroupPrimaryId>0" autofocus>
+                      <option *ngFor="let grp of userGroupData" [value]="grp.name">{{grp.name}}</option>
+                    </select>
+                  </td>
+                </tr>                
+                <tr class="form-group required">
+                  <td><label class="control-label" for="entitiesControl">Entities</label></td>
+                  <td>
+                    <div class="upperDiv upperDiv-pane">
+                      <div class="itemDataPanel">
+                        <section class="example-section">
+                          <label style="width: 40%;">Entity Name</label>
+                          <label style="width: 15%;">Create</label>
+                          <label style="width: 15%;">Read</label>
+                          <label style="width: 15%;">Update</label>
+                          <label style="width: 15%;">Delete</label>
+                        </section>
+                        <section class="example-section" *ngFor="let data of entitesData">
+                          <mat-checkbox style="width: 40%;" [checked]="data.isSelected"
+                            (change)="toggleEntityPermission(data,'entity')"> {{ data.name }} </mat-checkbox>
+                          <mat-checkbox style="width: 15%;" class="example-margin" [disabled]="!data.isSelected"
+                            [checked]="data.isCreate" (change)="toggleEntityPermission(data,'create')">Create
+                          </mat-checkbox>
+                          <mat-checkbox style="width: 15%;" class="example-margin" [disabled]="!data.isSelected"
+                            [checked]="data.isRead" (change)="toggleEntityPermission(data,'read')">Read
+                          </mat-checkbox>
+                          <mat-checkbox style="width: 15%;" class="example-margin" [disabled]="!data.isSelected"
+                            [checked]="data.isUpdate" (change)="toggleEntityPermission(data,'update')">Update
+                          </mat-checkbox>
+                          <mat-checkbox style="width: 15%;" class="example-margin" [disabled]="!data.isSelected"
+                            [checked]="data.isDelete" (change)="toggleEntityPermission(data,'delete')">Delete
+                          </mat-checkbox>
+                        </section>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-md-12 btnsearch">
+                <button type="reset" class="btn btn-default" (click)="cancel()" name="cancel">Cancel</button>
+                <button type="submit" *ngIf="pageType==1" class="btn btn-primary" name="save">Save</button>
+                <button type="submit" *ngIf="pageType!=1" class="btn btn-primary" name="save">Update</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="pageType==0">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <div id="addDiv" class="btnsearch btnhandlerpadding topmarg69">
+              <button class="btn btn-info" type="button" (click)="add()">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" [hidden]="pageType!=0">
+    <div class="col-sm-12">
+      <div>
+        <table datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions" class="table table-striped"></table>
+      </div>
+    </div>
+  </div>
+</div>

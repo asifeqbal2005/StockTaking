@@ -1,0 +1,18 @@
+<h5 mat-dialog-title class="popupTitle">Confirm Dialog</h5>
+<div mat-dialog-content>
+  <p class="centerClass">{{subTitle}}</p>
+</div>
+<div mat-dialog-actions>  
+  <div class="row">
+    <div class="col-md-6">
+      <button type="button" class="btn btn-primary form-control btn-confirm" (click)="onYesClick()" name="save">
+        <i class="fa fa-save addGapInIcon"></i>Yes
+      </button>
+    </div>
+    <div class="col-md-6">
+      <button type="reset" class="btn btn-default form-control btn-confirm" (click)="onNoClick()" name="cancel">
+        <i class="fa fa-window-close addGapInIcon"></i>No
+      </button>
+    </div>
+  </div>
+</div>

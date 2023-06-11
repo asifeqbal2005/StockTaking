@@ -1,0 +1,35 @@
+
+  <app-nav-menu *ngIf="securityService.IsAuthorized && securityService.isAuthorizeById" settingLoaded></app-nav-menu>  
+  <div class="container" *ngIf="(settingsLoaded||loggedout)">
+    <router-outlet></router-outlet>
+  </div>
+
+  <ngx-loading [show]="loaderService.isLoading | async" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+  <div *ngIf="message" class="modal" tabindex="-1" role="dialog" style="display:block!important">
+    <div class="modal-dialog custom-alert" role="document">
+      <div class="modal-content">
+
+        <div *ngIf="message?.type == 'confirm'" class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <p class="text-center confirm-message">Warning: You have unsaved changes. Please press OK to save these
+                changes or Cancel to lose those changes and proceed.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="confirm-button">
+                <a class="mr-2" (click)="message.yesFunction()">
+                  <button class="btn btn-primary" type="button">OK</button>
+                </a>
+                <a (click)="message.noFunction()">
+                  <button class="btn btn-default">Cancel</button>
+                </a>
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

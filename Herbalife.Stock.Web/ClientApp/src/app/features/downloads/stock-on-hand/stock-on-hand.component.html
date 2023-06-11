@@ -1,0 +1,80 @@
+<div class="col-xl-3 col-sm-4 col-10">
+    <!-- <div id="wrapper">
+        <div id="first"><label>Filter By Row:</label>&nbsp;&nbsp;</div>
+        <div id="second"><select id="selectrow" name="row" (change)="onRowDataSelected($event)"
+                style="width: 250px !important;" class="form-control">
+                <option [ngValue]="All">All</option>
+                <option *ngFor="let rowData of rowFilterResult" [ngValue]="rowData">
+                    {{rowData}}
+                </option>
+            </select></div>
+    </div> -->
+    <div id="wrapper-download">
+        <button type="button" class="btn btn-success" (click)="downloadStockOnHand()">Download Stock On Hand</button>
+    </div>
+</div>
+<div class="card shadow border-0 mb-7">
+    <div class="table-responsive-inventory">
+        <table class="table table-success table-striped" #myTable>
+            <thead class="thead">
+                <tr>
+                    <!-- <th>&nbsp;</th> -->
+                    <!-- <th scope="col">Date</th> -->
+                    <th scope="col">S.No</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Movible Unit</th>
+                    <th scope="col">SKU</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Lot</th>
+                    <th scope="col">Exp date</th>
+                    <th scope="col">Serial Key</th>
+                    <th scope="col">OH WMS</th>
+                    <th scope="col">Actual-A</th>
+                    <th scope="col">Difference-A</th>
+                    <th scope="col">Actual-B</th>
+                    <th scope="col">ActualFinal</th>
+                    <th scope="col">DiffFinal</th>
+                    <!-- <th scope="col">&nbsp;</th> -->
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor="let inv of stockOnHandInventory | paginate: { itemsPerPage: pageSize, currentPage: p }">
+                    <!-- <td>
+                        <input type="checkbox" [(ngModel)]="inv.isChecked" (change)="onCheckboxChange()">
+                    </td> -->
+                    <!-- <td>{{inv.date | date: 'dd/MM/yyyy'}}</td> -->
+                    <td>{{inv.sNo}}</td>
+                    <td>{{inv.location}}</td>
+                    <td>{{inv.movibleUnit}}</td>
+                    <td>{{inv.sku}}</td>
+                    <td>{{inv.description}}</td>
+                    <td>{{inv.lot}}</td>
+                    <td>{{inv.expdate}}</td>
+                    <td>{{inv.serialkey}}</td>
+                    <td>{{inv.onHand_WMS}}</td>
+                    <td>{{inv.actualA}}</td>
+                    <td>{{inv.diffA}}</td>
+                    <td>{{inv.actualB}}</td>
+                    <td>{{inv.actualFinal}}</td>
+                    <td>{{inv.diffFinal}}</td>
+                    <!-- <td><button class="btn btn-success" (click)="downloadRow(inv)"><i
+                                class="download-icon fa-download-icon"></i></button></td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <div class="parent-bottom">
+            <div class="twins1-pagination pagination">
+                <pagination-controls (pageChange)="p=$event"></pagination-controls>
+            </div>
+            <div class="twins2-pagination">
+                <label>Page Size:</label>&nbsp;&nbsp;<select [(ngModel)]="pageSize" style="width: 100px !important;">
+                    <option *ngFor="let pageSize of [10, 20, 50, 100, 1000, 5000, 10000]" [value]="pageSize">
+                        {{pageSize}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+</div>

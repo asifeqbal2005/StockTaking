@@ -1,0 +1,149 @@
+<div class="mainblock">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-md-12">
+        <div class="baseblock">
+          <div class="leftblock">
+            <h3>{{'lblHeading' | multilingualPipe:pageLayout}} {{userName}} !</h3>
+            <h6>{{'lblSubHeading' | multilingualPipe:pageLayout}}</h6>
+            <ul class="">
+              <li>{{'lblActionPlanCount' | multilingualPipe:pageLayout}} {{dashboardData.actionPlanCount}}</li>
+              <li>{{'lblMeetingCount' | multilingualPipe:pageLayout}} {{dashboardData.meetingCount}}</li>
+              <li>{{'lblEventsCount' | multilingualPipe:pageLayout}} {{dashboardData.eventCount}}</li>
+            </ul>
+          </div>
+          <img src="assets/images/welcomeicon.png" />
+        </div>
+      </div>
+      <!-- <div class="col-lg-3 col-md-6">
+        <div class="baseblock orange">
+          <h3>Total Action Plan</h3>
+          <div class="lefttotalmsg">18.8K</div>
+          <div class="rightcontent">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        </div>
+      </div> -->
+      <div class="col-lg-9 col-md-12">
+        <div class="row">
+          <div class="col-sm-7">
+            <div class="meetingClass">
+              <h6> {{'lblMeeting' | multilingualPipe:pageLayout}}</h6>
+              <table mat-table [dataSource]="meetingDataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblDate' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element;"> {{element.date}} </td>
+                </ng-container>
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblMeetingType' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element"> {{element.meetingType}} </td>
+                </ng-container>
+                <ng-container matColumnDef="weight">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblMemberName' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element"> {{!element.memberName?'N/A':element.memberName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="symbol">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblMemberTeam' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element"> {{!element.memberTeam?'N/A':element.memberTeam }} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="meetingDisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: meetingDisplayedColumns;"></tr>
+              </table>
+            </div>
+          </div>
+         
+          <div class="col-sm-5">
+            <div class="actionPlanClass">
+              <h6>{{'lblActionPlan' | multilingualPipe:pageLayout}}</h6>
+              <table mat-table [dataSource]="actionDataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblActionPlanType' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element"> {{element.actionPlanTypeName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblDate' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="actionDisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: actionDisplayedColumns;"></tr>
+              </table>
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <div class="eventClass">
+              <h6>{{'lblEvent' | multilingualPipe:pageLayout}}</h6>
+              <table mat-table [dataSource]="eventDataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblDate' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element;"> {{element.date}} </td>
+                </ng-container>
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblEventName' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element"> {{element.eventName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="weight">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblMembers' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element"> {{element.members}} </td>
+                </ng-container>
+                <ng-container matColumnDef="symbol">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblAttendees' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element"> {{element.attendees}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="eventDisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: eventDisplayedColumns;"></tr>
+              </table>
+            </div>
+          </div>
+       
+          <div class="col-sm-5">
+            <div class="nutritionClubClass">
+              <h6> {{'lblNutritionClubStatus' | multilingualPipe:pageLayout}}</h6>
+              <table mat-table [dataSource]="nutritionClubDataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblClubName' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element"> {{element.clubName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> {{'lblTotalClub' | multilingualPipe:pageLayout}} </th>
+                  <td mat-cell *matCellDef="let element"> {{element.totalClub}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="nutritionClubDisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: nutritionClubDisplayedColumns;"></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 upcomingblock">
+        <div class="baseblock">
+          <h3>{{'lblUpcomingMeeting' | multilingualPipe:pageLayout}}</h3>
+          <ul>
+            <h5 style="margin-top: 5px !important;">{{'lblToday' | multilingualPipe:pageLayout}}</h5>
+            <li *ngFor="let up of dashboardData.todayUpcomingMeetings" style="margin-top: 5px;">
+              <span class="timeicon"><img src="assets/images/calicon.png" /></span>
+              <div class="meetingNT">
+                <span class="meetingname">{{up.meetingType}} / {{up.meetingName}}</span>
+                <span class="meetingtime">{{up.meetingTime}}</span>
+              </div>
+            </li>
+            <h5 style="margin-top: 5px !important;">{{'lblTomorrow' | multilingualPipe:pageLayout}}</h5>
+            <li *ngFor="let up of dashboardData.tomorrowUpcomingMeetings" style="margin-top: 5px;">
+              <span class="timeicon"><img src="assets/images/calicon.png" /></span>
+              <div class="meetingNT">
+                <span class="meetingname">{{up.meetingType}} / {{up.meetingName}}</span>
+                <span class="meetingtime">{{up.meetingTime}}</span>
+              </div>
+            </li>
+            <h5 style="margin-top: 5px !important;">{{'lblDayAFterTomorrow' | multilingualPipe:pageLayout}}</h5>
+            <li *ngFor="let up of dashboardData.dayAFterTomorrowUpcomingMeetings" style="margin-top: 5px;">
+              <span class="timeicon"><img src="assets/images/calicon.png" /></span>
+              <div class="meetingNT">
+                <span class="meetingname">{{up.meetingType}} / {{up.meetingName}}</span>
+                <span class="meetingtime">{{up.meetingTime}}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

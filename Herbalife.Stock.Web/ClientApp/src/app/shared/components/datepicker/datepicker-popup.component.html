@@ -1,0 +1,20 @@
+<div class="input-group">
+  <input class="form-control" autocomplete="off"
+         placeholder="dd/mm/yyyy"
+         name="dp"
+         [(ngModel)]="selectedDate"
+         [minDate]="minDate"
+         [maxDate]="maxDate"
+         ngbDatepicker #d="ngbDatepicker"
+         (change)="onDateChange($event.target.value);dateChangeCallback();clearCoverfromValidation()"
+         (dateSelect)="onDateSelect($event);dateChangeCallback()" [disabled]="disable" [class.is-invalid]="cssClass ||formControl.invalid"
+         [formControl]="formControl"
+         (keypress)="dateMasking($event)">
+
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary calendar" (click)="celenderPopup();d.toggle();" type="button" [disabled]="disable">
+    </button>
+  </div>
+  <div class="invalid-tooltip" [hidden]="cssClass">{{ formControl.invalid ? "Date is invalid" : undefined }}</div>
+</div>
+

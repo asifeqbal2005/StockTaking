@@ -1,0 +1,162 @@
+/* @import url(https://therichpost.com/responsivestyle/index.css); */
+
+.stickyheader {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1.5rem 1.5rem;
+    color: #525f7f;
+    background-color: rgb(130, 225, 182);
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #5c60f5;
+    border-color: #0c8;
+}
+
+.ls-tight {
+    letter-spacing: -0.025em !important;
+    text-align-last: right;
+}
+
+.parent {
+    width: 500px;
+    padding: 1em 0em 0em 1em;
+    border: 1px solid rgb(130, 225, 182);
+    float: left;
+    border-radius: 10px;
+}
+
+.parent-bottom {
+    width: 100%;
+    padding: 1em 0em 0em 1em;
+    border: 1px solid rgb(130, 225, 182);
+    float: left;
+    border-radius: 10px;
+}
+
+.child {
+    width: 100%;
+    border: 0px solid black;
+    font-family: 'HelveticaNeueLTStd-Lt';
+    font-weight: bold;
+    line-height: 2.0;
+}
+
+.twins1 {
+    width: 70%;
+    padding: 0em 1em 1em 0em;
+    border: 0px solid black;
+    float: left;
+}
+
+.twins2 {
+    width: 30%;
+    padding: 0em 1em 1em 0em;
+    border: 0px solid black;
+    float: right;
+}
+
+#wrapper {
+    width: 500px;
+    overflow: hidden;
+    /* will contain if #first is longer than #second */
+    /* background-color: rgb(130, 225, 182); */
+    padding: 1em 0em 0em 0em;
+    border: 0px solid black;
+}
+
+#first {
+    width: 300px;
+    float: left;
+    /* add this */
+    /* border: 1px solid red; */
+}
+
+#second {
+    /* border: 1px solid green; */
+    overflow: hidden;
+    /* if you don't want #second to wrap below #first */
+    float: right
+}
+
+.btn-upload {
+    border: 1px !important;
+    font-weight: normal !important;
+    font-size: 13px;
+    /* width: 85px; */
+}
+
+.table-responsive-inventory {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table thead th {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: .800rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .025em;
+    background-color: #0c8;
+    border-bottom-width: 1px;
+    color: #f5f9fc;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+thead tr th {
+    position: sticky;
+    top: 0;
+    background-color: #f1f1f1;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-start;
+    align-items: right;
+    /* margin-top: 10px; */
+}
+
+.twins1-pagination {
+    width: 50%;
+    border: 0px solid black;
+    float: left;
+}
+
+.twins2-pagination {
+    width: 50%;
+    border: 0px solid black;
+    float: right;
+}
+
+.btn-edit {
+    color: #fff;
+    background-color: #0c8;
+    border-color: #0c8;
+    font-size: 12px;
+    width: 60px;
+}
+
+.text-end {
+    text-align: center !important;
+}

@@ -1,0 +1,79 @@
+
+<div class="mainblock">
+  <div class="container">
+    <div class="TBpadding">
+
+      <div class="col-md-12">
+        <div class="form-group row">
+          <div *ngIf="isAddButtonShow" id="addDiv" class="btnsearch btnhandlerpadding">
+            <button class="btn btn-info" type="button" (click)="this.hideAddButton(false)"><i class="fa fa-plus"></i></button>
+          </div>
+          <div class="col-sm-4"></div>
+          <div class="col-sm-3 ">
+            <h3>
+              AssignEntitiesToUsers
+            </h3>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div *ngIf="isShown" class="col-sm-12">
+      <div>
+        <div *ngIf="!isEditMode">
+          <h5 class="header1">Assign Entities</h5>
+        </div>
+        <div *ngIf="isEditMode">
+          <h5 class="header1">Edit Assign Entities</h5>
+        </div>
+        <form (ngSubmit)="f.form.valid && onSubmit(form)" name="form" #f="ngForm" novalidate autocomplete="off">
+          <div class="form-group row required">
+            <div class="row">
+              <div class="column table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-striped mb-0" style="border:double;width:250px">
+                  <thead><tr><th align="center">Users<input type="text" (keyup)="searchUser($event.target.value)" placeholder="Search" autocomplete="off"></th></tr></thead>
+                  <tr *ngFor="let claimItems of filteredlaimHandler"><td><input type="checkbox" [attr.checked]="claimItems.isSelected? true:null" id="claimItems.id" (click)="checkedUserItems(claimItems)" /> {{claimItems.userName}}</td></tr>
+                </table>
+                <span style="color:red" *ngIf="isAddUserError">Please select minimum one user.</span>
+              </div>
+              <div class="column table-wrapper-scroll-y my-custom-scrollbar">
+                <table id="tblentity" class="table table-bordered table-striped mb-0" style="border:double;width:250px">
+                  <thead><tr><th align="center">Entities <input type="text" (keyup)="searchEntity($event.target.value)" placeholder="Search" autocomplete="off"></th></tr></thead>
+                  <tr *ngFor="let entity of filteredEntites"><td><input type="checkbox" [checked]="entity.isSelected" id="entity.id" (click)="checkedEntityItems(entity)" /> {{entity.entityName}}</td></tr>
+                </table>
+                <span style="color:red" *ngIf="isAddEntityError">Please select minimum one entity.</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <div class="col-sm-12">
+              <br>
+              <button type="submit" class="btn btn-primary" name="save" [hidden]="isReadOnlyMode"><i class="fa fa-save"></i>Save</button>&nbsp;&nbsp;&nbsp;
+              <button type="reset" class="btn btn-default" (click)="hideform()" name="cancel"><i class="fa fa-window-close"></i>Cancel</button>
+              <br>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div>
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+          <tfoot>
+            <tr class="filters">
+              <th><input type="text" placeholder="User Name" name="userName" class="form-control" /></th>
+              <th><input type="text" placeholder="Entity Name" name="entityName" class="form-control" /></th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+

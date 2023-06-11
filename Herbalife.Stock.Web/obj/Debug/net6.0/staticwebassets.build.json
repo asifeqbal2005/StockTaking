@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "7T9DL0gbxQ6QtJ7z/djH4LSFvDN8oG1S+djPvJIWn0U=",
+  "Source": "Herbalife.Stock.Web",
+  "BasePath": "_content/Herbalife.Stock.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Herbalife.Stock.Web\\wwwroot",
+      "Source": "Herbalife.Stock.Web",
+      "ContentRoot": "D:\\Projects\\Herbalife_Stock_Taking\\HerbalifeStockTakingSystem\\Herbalife.Stock.Web\\wwwroot\\",
+      "BasePath": "_content/Herbalife.Stock.Web",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Projects\\Herbalife_Stock_Taking\\HerbalifeStockTakingSystem\\Herbalife.Stock.Web\\wwwroot\\favicon.ico",
+      "SourceId": "Herbalife.Stock.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\Herbalife_Stock_Taking\\HerbalifeStockTakingSystem\\Herbalife.Stock.Web\\wwwroot\\",
+      "BasePath": "_content/Herbalife.Stock.Web",
+      "RelativePath": "favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.ico"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Herbalife.Stock.Web.props" />
+</Project>

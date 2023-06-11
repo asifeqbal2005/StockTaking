@@ -1,0 +1,125 @@
+<div class="wrapper">
+  <!--Left nav---->
+  <aside class="left-sidebar bg-sidebar">
+    <div id="sidebar" class="sidebar sidebar-with-footer">
+      <!-- Logo -->
+      <div class="app-brand">
+        <a href="javascript:void(0)" title="Herbalife">
+          <img src="assets/images/header/HerbalifeLogoNew.PNG">
+        </a>
+      </div>
+
+      <!-- begin sidebar scrollbar -->
+      <div class="slimScrollDiv">
+        <div class="sidebar-scrollbar">
+          <!-- sidebar menu -->
+          <ul class="nav sidebar-inner">
+            <li class="expand" *ngFor="let menu of menuData">
+              <a [class]="menu.isSelected?'sidenav-item-link active':'sidenav-item-link'" 
+                [routerLink]="[menu.routerLink]">
+                <i [class]="'mdi mdi-view-dashboard-outline '+ menu.entityIcon"></i>
+                <span class="nav-text">{{menu.description}}</span>
+              </a>
+            </li>
+            <li class="has-sub" *ngFor="let subMenu of subMenuData" id="sidebar-menu_{{subMenu.entityName}}">
+              <a [class]="subMenu.isSelected?'sidenav-item-link active':'sidenav-item-link'"
+                 data-toggle="collapse" data-target="#app" aria-expanded="false" aria-controls="app">
+                <i [class]="'mdi mdi-view-dashboard-outline '+ subMenu.entityIcon"></i>
+                <span class="nav-text">{{subMenu.description}}</span> <b class="caret"></b>
+              </a>
+              <ul id="app">
+                <div class="sub-menu">
+                  <li *ngFor="let childMenu of subMenu.childMenu" data-parent="#sidebar-menu_{{childMenu.parentEntityName}}">
+                    <a [class]="childMenu.isSelected?'sidenav-item-link active':'sidenav-item-link'"
+                       [routerLink]="[childMenu.routerLink]">                      
+                      <span class="nav-text">{{childMenu.description}}</span>
+                    </a>
+                  </li>
+                </div>
+              </ul>
+            </li>
+
+            <!-- <li class="expand">
+              <a [class]="'sidenav-item-link active'">                
+                <span class="nav-text">ADMINISTRATION</span>
+              </a>
+            </li>
+            <li class="expand">
+              <a [class]="'sidenav-item-link'">                
+                <span class="nav-text">Manage Users</span>
+              </a>
+            </li> 
+            <li class="expand">
+              <a [class]="'sidenav-item-link'">                
+                <span class="nav-text">Manage Country</span>
+              </a>
+            </li> 
+            <li class="expand">
+              <a [class]="'sidenav-item-link'">                
+                <span class="nav-item">Manage UOM and Items</span>
+              </a>
+            </li> 
+            <li class="expand">
+              <a [class]="'sidenav-item-link'">                
+                <span class="nav-text">Manage Location</span>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+  <!--Left nav end---->
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header class="main-header " id="header">
+      <nav class="navbar navbar-static-top navbar-expand-lg pr-0">
+        <!-- Sidebar toggle button -->
+        <button id="sidebar-toggler" class="sidebar-toggle" (click)="toggleNavbar()"></button>
+        <!-- search form -->
+        <div class="search-form d-none d-lg-inline-block"></div>
+
+        <div class="navbar-right ">
+          <ul class="nav navbar-nav">
+            <!-- <li class="dropdown user-menu">
+              <img src="assets/images/header/lanicon.png" class="user-image" alt="User Image" />
+              <select class="" [(ngModel)]="languageId" (ngModelChange)="changeLanguage()">
+                <option *ngFor="let lang of languageData" [value]="lang.id">
+                  <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <span class="d-none d-lg-inline-block">{{lang.text}}</span>
+                  </button>
+                </option>
+              </select>
+            </li>-->
+            <li class="has-sub">
+              <img src="assets/images/header/usericon.png" class="user-image" alt="User Image" />
+              <span class="d-none d-lg-inline-block" data-toggle="collapse" data-target="#appMenu" aria-expanded="false"
+                aria-controls="app" style="padding-left: 5px;">
+                {{userName}}
+              </span>
+              <ul class="collapse" id="appMenu" data-parent="#sidebar-menu">
+                <div class="sub-menu">
+                  <li>
+                    <a class="optionData" (click)="Logout()">{{'lblLogout' | multilingualPipe:pageLayout}} <img
+                        src="assets/images/logouticon.png" /></a>
+                  </li>
+                </div>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!--Header end-->
+    <!--Content area-->
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="card card-default">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+    <!--Content area end-->
+  </div>
+</div>

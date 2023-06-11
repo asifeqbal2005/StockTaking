@@ -1,0 +1,23 @@
+.addGapInIcon{
+    margin-right: 1em;
+}
+.fullLength{
+    width: 100%;
+    margin: 5px;
+}
+
+.popupTitle{
+    text-transform: capitalize;
+    text-align: left;
+    margin-top: 0px !important;
+}
+
+.centerClass{
+    text-align: center;
+}
+
+.btn-confirm {
+    color: #fff !important;
+    /* background-color: #007bff !important;
+    border-color: #007bff !important; */
+}

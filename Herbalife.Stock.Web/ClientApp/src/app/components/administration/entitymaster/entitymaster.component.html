@@ -1,0 +1,133 @@
+<div class="mainblock">
+  <div class="container">
+    <div class="col-md-12 col-title">
+      <div *ngIf="isAddButtonShow" id="addDiv" class="btnsearch btnhandlerpadding topmarg14">
+        <button class="btn btn-info" type="button" (click)="this.hideAddButton(false)">
+          <i class="fa fa-plus"></i>
+        </button>
+      </div>
+      <div class="col-sm-4"></div>
+      <div class="col-heading">
+        <h3>
+          Entity Master
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="col-sm-12 col-title" *ngIf="isShown">
+      <div *ngIf="!isEditMode" style="font-weight: bold;">
+        Add Entity
+      </div>
+      <div *ngIf="isEditMode" style="font-weight: bold;">
+        Edit Entity
+      </div>
+      <div>
+        <form (ngSubmit)="f.form.valid && onSubmit(form)" name="form" #f="ngForm" novalidate autocomplete="off">
+          <div class="form-group tableblock">
+            <table class="tabulargrid">
+              <tr class="form-group required">
+                <td> <label class="control-label" for="entityName">Entity Name</label></td>
+                <td>
+                  <input id="entityName" type="text" placeholder="Entity Name" class="form-control"
+                    [(ngModel)]="inputData.entityName" name="entityName" #entityName="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && entityName.invalid }" [readonly]="isEditMode" required
+                    autofocus />
+                </td>
+              </tr>
+              <tr class="form-group required">
+                <td><label class="control-label" for="routerLink">Navigate URL</label></td>
+                <td>
+                  <input id="routerLink" type="text" placeholder="Router Link" class="form-control"
+                    [(ngModel)]="inputData.routerLink" name="routerLink" #routerLink="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && routerLink.invalid }" required />
+                </td>
+              </tr>
+              <tr>
+                <td><label class="control-label" for="description">Description</label></td>
+                <td>
+                  <input id="description" type="text" placeholder="Description" class="form-control"
+                    [(ngModel)]="inputData.description" name="description" #description="ngModel" />
+                </td>
+              </tr>
+              <tr class="form-group required">
+                <td><label class="control-label" for="entityIcon">Entity Icon</label></td>
+                <td>
+                  <input id="entityIcon" type="text" placeholder="Entity Icon" class="form-control"
+                    [(ngModel)]="inputData.entityIcon" name="entityIcon" #entityIcon="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && entityIcon.invalid }" required />
+                </td>
+              </tr>
+              <tr>
+                <td><label class="control-label" for="displayOrder">Display Order</label></td>
+                <td>
+                  <input id="routerLink" type="number" placeholder="Display Order"
+                    class="form-control input-display-order" [(ngModel)]="inputData.displayOrder" name="displayOrder"
+                    #displayOrder="ngModel" />
+                </td>
+              </tr>
+              <tr class="form-group required">
+                <td><label class="control-label" for="isParent">IsParent</label>
+                </td>
+                <td>
+                  <select id="isParent" [(ngModel)]="inputData.isParent" name="isParent" #isParent="ngModel"
+                    class="form-control" [ngClass]="{ 'is-invalid': f.submitted && isParent.invalid }" required
+                    autofocus>
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                  </select>
+                </td>
+              </tr>
+              <tr *ngIf="inputData.isParent=='true'">
+                <td><label class="control-label" for="parentEntity">Parent Entity</label></td>
+                <td>
+                  <select id="parentEntity" [(ngModel)]="inputData.parentEntity" name="parentEntity"
+                    #parentEntity="ngModel" class="form-control">
+                    <!-- <option value="undefiend" selected>Parent Entity</option> -->
+                    <option *ngFor="let par of parentEntityData" [ngValue]="par.id">{{par.name}}</option>
+                  </select>
+                </td>
+              </tr>
+              <tr class="required">
+                <td><label class="control-label" for="isParent">Assign Permission</label></td>
+                <td>
+                  <select id="assignPermission" [(ngModel)]="inputData.assignPermission" name="assignPermission"
+                    #assignPermission="ngModel" class="form-control"
+                    [ngClass]="{ 'is-invalid': f.submitted && assignPermission.invalid }" required autofocus>
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="entity-form-group row required">
+            <div class="col-sm-12 btnsearch col-title">
+              <button type="reset" class="btn btn-default" (click)="cancelEntity()" name="cancel">Cancel</button>
+              <button type="submit" class="btn btn-primary" name="save" [hidden]="isReadOnlyMode">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="col-sm-12 col-title">
+      <div>
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+          <tfoot>
+            <tr class="filters">
+              <th><input type="text" placeholder="Entity Name" name="entityName" class="form-control" /></th>
+              <th><input type="text" placeholder="Navigate URL" name="routerLink" class="form-control" /></th>
+              <th><input type="text" placeholder="Description" name="description" class="form-control" /></th>
+              <th><input type="text" placeholder="Parent Entity" name="parentName" class="form-control" /></th>
+              <th><input type="text" placeholder="Display Order" name="displayOrder" class="form-control" /></th>
+              
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

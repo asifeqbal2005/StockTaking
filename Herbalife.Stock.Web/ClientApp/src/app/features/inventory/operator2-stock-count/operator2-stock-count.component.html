@@ -1,0 +1,81 @@
+<body class="loginbg_herbalifeBG">
+    <ng-container *ngIf="isMobileResolution">
+        <img src="../../../../assets/images/header/HerbalifeLogoNew.PNG">
+    </ng-container>
+    <main class="py-6 bg-surface-secondary">
+        <div class="container-fluid">
+            <div class="col-md-16">
+                <div class="parent">
+                    <div class="twins1">
+                        <label>Row:&nbsp;</label>
+                    </div>
+                    <div class="twins2">
+                        <select [ngModel]="selectedRowObj" (ngModelChange)="onRowDataSelected($event)" name="row"
+                            class="form-control">
+                            <option [ngValue]="allData">Select Row</option>
+                            <option *ngFor="let rowData of rowResult" [ngValue]="rowData">
+                                {{rowData}}
+                            </option>
+                        </select>                        
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-sm btn-success" [disabled]="selectedRow==undefined"
+                        (click)="submitRow()">Submit Row</button>
+                </div>                
+                <div class="table-responsive">
+                    <table id="operator" class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>SNo</th>
+                                <th>Location</th>
+                                <th>Movable Unit</th>
+                                <th>SKU</th>
+                                <th>Description</th>
+                                <th>Lot</th>
+                                <th>Exp Date</th>
+                                <th>Serial Key</th>
+                                <th>Actual-B</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center text-uppercase">
+                            <tr *ngFor="let inv of allInventory"
+                                [ngClass]="inv.actualBUpdated ? 'updated-job' : 'tobeUpdate-job'">
+                                <td>{{ inv.sNo }}</td>
+                                <td>{{ inv.location }}</td>
+                                <td>{{ inv.movibleUnit }}</td>
+                                <td>{{ inv.sku }}</td>
+                                <td>{{ inv.description }}</td>
+                                <td>{{ inv.lot }}</td>
+                                <td>{{ inv.expdate }}</td>
+                                <td>{{ inv.serialkey }}</td>
+                                <td>
+                                    <ng-container *ngIf="inv.isEdit; then isActualBEdit; else isNotActualBEdit">
+                                    </ng-container>
+                                    <ng-template #isActualBEdit>
+                                        <input type="number" [(ngModel)]="inv.actualB" class="edit-control" />
+                                    </ng-template>
+                                    <ng-template #isNotActualBEdit>
+                                        {{inv.actualB}}
+                                    </ng-template>
+                                </td>                                
+                                <td>
+                                    <div *ngIf="inv.isEdit">
+                                        <button class="btn btn-sm btn-success" *ngIf="inv.isEdit"
+                                            (click)="UpdateData(inv)" (click)="inv.isEdit=false">Update</button>&nbsp;
+                                        <button class="btn btn-sm btn-success" *ngIf="inv.isEdit"
+                                            (click)="close(inv)">Cancel</button>
+                                    </div>
+                                    <div *ngIf="!inv.isEdit"><button class="btn btn-success" *ngIf="!inv.isEdit"
+                                            (click)="EditData(inv)">Edit</button></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>               
+            </div>
+        </div>
+    </main>
+
+</body>

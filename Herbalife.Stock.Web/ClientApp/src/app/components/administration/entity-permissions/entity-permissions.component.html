@@ -1,0 +1,53 @@
+<div class="mainblock">
+  <div class="container">
+    <div class="TBpadding">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <div class="col-sm-3">
+            <h5 class="header1">Entity Permission</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="TBpadding">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <div class="col-sm-3 ">
+            <label>
+              Entity Type
+            </label>
+          </div>
+          <div class="col-sm-3">
+            <select class="form-control" name="lookupType" [(ngModel)]="EntityPermissionVM.entityName" (change)="onEntityPermissionChange()">
+              <option value="0" selected>-select-</option>
+              <option *ngFor="let lookuptype of lookupTypes" [ngValue]="lookuptype.name">{{lookuptype.name}}</option>
+            </select>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-4">
+              <div class="form-check" *ngFor="let item of checkboxesDataList">
+                <input class="form-check-input" [(ngModel)]="item.isChecked" (change)="changeSelection()" type="checkbox" value="" id="{{ 'flexCheck' +item.label}}">
+                <label class="form-check-label" for="{{ 'flexCheck' + item.label }}">
+                  {{item.label}}
+                </label>
+              </div>
+            </div>
+            <div class="row" *ngIf="!isSaveButtonMode">
+              <div class="col-md-12 btnsearch">
+                <button type="submit" class="btn btn-primary" (click)="onSubmit()" name="save"><i class="fa fa-save"></i>Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="col-sm-12">
+      <div>
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

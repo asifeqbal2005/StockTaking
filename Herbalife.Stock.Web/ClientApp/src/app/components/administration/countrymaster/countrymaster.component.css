@@ -1,0 +1,21 @@
+.h3,
+h3 {
+    font-size: 1.75rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.col-heading{
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 0px !important;
+}
+
+.country-form-group {
+    margin-bottom: 20px !important;
+}
+
+.col-title
+{  
+  padding-right: 0px !important;  
+}

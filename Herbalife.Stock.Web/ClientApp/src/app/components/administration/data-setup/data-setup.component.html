@@ -1,0 +1,170 @@
+<div class="mainblock">
+  <div class="container">
+    <div class="TBpadding">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <div *ngIf="isAddLookupButtonShow" id="addDiv" class="btnsearch btnhandlerpadding">
+            <button class="btn btn-info" type="button" (click)="this.hideAddTypeButton(false)">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+          <div *ngIf="isAddButtonShow" id="addDiv" class="btnsearch btnhandlerpadding">
+            <button class="btn btn-info" type="button" (click)="this.hideAddButton(false)">
+              <i class="fa fa-plus"></i>
+
+            </button>
+          </div>
+          <div class="col-sm-4"></div>
+          <div class="col-sm-3 ">
+            <h3>
+              {{'lblHeaderLookUpTypeText' | multilingualPipe:pageLayout}}
+            </h3>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <form (ngSubmit)="f.form.valid && onSubmit()" name="form" #f="ngForm" novalidate autocomplete="off">
+      <div *ngIf="isShown" class="col-sm-12">
+        <div>
+          <div *ngIf="!isEditMode">
+            <h5 class="header1"> {{'lblHeaderAddLookUp' | multilingualPipe:pageLayout}}</h5>
+          </div>
+          <div *ngIf="isEditMode">
+            <h5 class="header1"> {{'lblHeaderEditLookUp' | multilingualPipe:pageLayout}}</h5>
+          </div>
+          <div class="card-block">
+            <div class="form-group tableblock required">
+
+              <table class="tabulargrid">
+                <tr>
+                  <td> <label class="control-label" for="inputName">{{'lblLookUpName' |
+                      multilingualPipe:pageLayout}}</label></td>
+                  <td>
+
+                    <input id="inputName" type="text" placeholder="{{'lblLookUpName' | multilingualPipe:pageLayout}}"
+                      class="form-control" [(ngModel)]="lookupVM.name" name="name" #name="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" [disabled]="isReadOnlyMode" required
+                      autofocus />
+                  </td>
+                </tr>
+                <tr>
+                  <td> <label class="control-label" for="inputText">{{'lblLookUpDisplayText' |
+                      multilingualPipe:pageLayout}}</label></td>
+                  <td>
+
+                    <input id="inputText" type="text"
+                      placeholder="{{'lblLookUpDisplayText' | multilingualPipe:pageLayout}}" class="form-control"
+                      [(ngModel)]="lookupVM.text" name="text" #text="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && text.invalid }" [disabled]="isReadOnlyMode" required />
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-md-12 btnsearch">
+                <button type="reset" class="btn btn-default" (click)="hideForm()" name="cancel">
+                  {{'btnLookUpCancel' | multilingualPipe:pageLayout}}
+                </button>
+                <button type="submit" class="btn btn-primary" name="save" [hidden]="isReadOnlyMode">
+                  {{'btnLookUpSave' | multilingualPipe:pageLayout}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form (ngSubmit)="typef.form.valid && onLookUpSubmit()" name="typeForm" #typef="ngForm" novalidate
+      autocomplete="off">
+      <div *ngIf="isTypeShown" class="col-sm-12">
+        <div>
+          <div *ngIf="!isEditMode">
+
+            <h5 class="header1">{{'lblHeaderAddLookUpType' | multilingualPipe:pageLayout}}</h5>
+          </div>
+          <div *ngIf="isEditMode">
+            <h5 class="header1">{{'lblHeaderEditLookUpType' | multilingualPipe:pageLayout}}</h5>
+          </div>
+          <div class="card-block">
+            <div class="form-group tableblock required">
+
+              <table class="tabulargrid">
+                <tr>
+                  <td><label class="control-label" for="inputName">{{'lblLookUpTypeName' |
+                      multilingualPipe:pageLayout}}</label></td>
+                  <td>
+
+                    <input id="inputName" type="text"
+                      placeholder="{{'lblLookUpTypeName' | multilingualPipe:pageLayout}}" class="form-control"
+                      [(ngModel)]="lookupTypeVM.name" name="name" #name="ngModel"
+                      [ngClass]="{ 'is-invalid': typef.submitted && name.invalid }" [disabled]="isReadOnlyMode" required
+                      autofocus />
+                  </td>
+                </tr>
+                <tr>
+                  <td> <label class="control-label" for="inputText">{{'lblLookUpTypeDescription' |
+                      multilingualPipe:pageLayout}}</label></td>
+                  <td>
+
+                    <input id="inputText" type="text"
+                      placeholder="{{'lblLookUpTypeDescription' | multilingualPipe:pageLayout}}" class="form-control"
+                      [(ngModel)]="lookupTypeVM.description" name="text" #text="ngModel"
+                      [ngClass]="{ 'is-invalid': typef.submitted && text.invalid }" [disabled]="isReadOnlyMode"
+                      required />
+                  </td>
+                </tr>
+              </table>
+
+            </div>
+            <div class="row">
+              <div class="col-md-12 btnsearch">
+                <button type="reset" class="btn btn-default" (click)="hideTypeform()" name="cancel">
+                  {{'btnLookUpTypeCancel' | multilingualPipe:pageLayout}}
+                </button>
+                <button type="submit" class="btn btn-primary" name="save" [hidden]="isReadOnlyMode">
+                  {{'btnLookUpTypeSave' | multilingualPipe:pageLayout}}
+                </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="container">
+    <div class="col-md-12">
+      <div class=" " *ngIf="!isTypeShown">
+        <h5>Select</h5>
+        <select class="form-control lookupselect" name="lookupType" [(ngModel)]="lookupVM.lookupTypeId"
+          (change)="onLookupTypeChange()">
+          <option [ngValue]=null>-Select-</option>
+          <option *ngFor="let lookuptype of lookupTypes" [ngValue]="lookuptype.id">{{lookuptype.name}}</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+  <div class="container">
+    <div class="col-sm-12">
+      <div [hidden]="lookupVM.lookupTypeId==null">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
+          <!--<tfoot>
+            <tr class="filters">
+              <th> <input id="inputText" type="number" placeholder="{{'lblLookUpId' | multilingualPipe:pageLayout}}" name="id" class="form-control" (click)="filterLookupItenItem()" /></th>
+              <th><input type="text" placeholder="{{'lblLookUpName' | multilingualPipe:pageLayout}}" name="displayName" class="form-control" (click)="filterLookupItenItem()" /></th>
+              <th><input type="text" placeholder="{{'lblLookUpDisplayText' | multilingualPipe:pageLayout}}" name="displayText" class="form-control" (click)="filterLookupItenItem()" /></th>
+              <th></th>
+            </tr>
+          </tfoot>-->
+        </table>
+      </div>
+    </div>
+  </div>
